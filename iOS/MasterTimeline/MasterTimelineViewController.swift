@@ -225,6 +225,7 @@ class MasterTimelineViewController: UITableViewController, UndoableCommandRunner
 		
 		let readAction = UIContextualAction(style: .normal, title: readTitle) { [weak self] (action, view, completion) in
 			self?.coordinator.toggleRead(article)
+			tableView.setEditing(false, animated: false)
 			completion(true)
 		}
 		
@@ -245,6 +246,7 @@ class MasterTimelineViewController: UITableViewController, UndoableCommandRunner
 		
 		let starAction = UIContextualAction(style: .normal, title: starTitle) { [weak self] (action, view, completion) in
 			self?.coordinator.toggleStar(article)
+			tableView.setEditing(false, animated: false)
 			completion(true)
 		}
 		
@@ -292,6 +294,7 @@ class MasterTimelineViewController: UITableViewController, UndoableCommandRunner
 					completion(true)
 				})
 
+				tableView.setEditing(false, animated: false)
 				self.present(alert, animated: true)
 				
 			}
