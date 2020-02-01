@@ -210,8 +210,16 @@ class WebViewController: UIViewController {
 			coordinator.hideStatusBar()
 			topShowBarsViewConstraint?.constant = -44.0
 			bottomShowBarsViewConstraint?.constant = 44.0
+
+			let zoomScale = webView?.scrollView.zoomScale ?? 1.0
+			CATransaction.begin()
+			CATransaction.setCompletionBlock {
+				self.webView.scrollView.zoomScale = zoomScale
+			}
 			navigationController?.setNavigationBarHidden(true, animated: true)
 			navigationController?.setToolbarHidden(true, animated: true)
+			CATransaction.commit()
+
 			configureContextMenuInteraction()
 		}
 	}
